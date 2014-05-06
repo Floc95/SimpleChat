@@ -1,3 +1,4 @@
+//Déclaration des variables
 
 var express = require('express'),
     http = require('http'),
@@ -12,8 +13,11 @@ var express = require('express'),
     global.app = app;
     global.colors = colors;
 
+var logusers = {} //Hashmap avec les id utilisateur et session
 
-    global.dbsimplechat = dbsimplechat;
+    global.logusers = logusers;
+
+//Configuration de l'application
 
 app.configure(function () {
     app.set('port', 3000);
@@ -33,9 +37,21 @@ app.configure(function () {
     });
 
 
+//Lancement du serveur
+
 httpServer.listen(app.get('port'), function () {
     console.log("Simple chat server listening on port %s.".green, httpServer.address().port);
     });
+
+
+//Connection a la base de données
+
+var Repository = require('./server/repository').Repository;
+var userRepository = new Repository();
+
+global.userRepository = userRepository;
+
+//Définitions des fichiers utils
 
 console.log(require("./server/utils/get"));
 console.log(require("./server/utils/set"));

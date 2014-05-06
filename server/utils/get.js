@@ -17,18 +17,26 @@ app.get('/messages', function(req, res){
     });
  });
 
+
+
 app.get('/1', function(req, res){
-	var Repository = require('../repository').Repository;
-	var repo = new Repository();
-
-	console.log("Nouveau repo : "+ repo);
-
-	res.send(repo.getUser("1", ""));
+	//var Repository = require('../repository').Repository;
+	//var repo = new Repository();
+	res.send(userRepository.getUser("1", function(err, res){
+    console.log(err);
+  }));
 });
+
+
 
 app.get('/login', function(req, res){
 	res.render('login', {
             value: 'Veuillez saisir un autre login'
+        });
+});
+
+app.get('/chat', function(req, res){
+	res.render('chat', { username : "marine"
         });
 });
 
