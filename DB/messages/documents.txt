@@ -1,0 +1,23 @@
+/* 0 */
+{
+    "_id" : ObjectId("53688a0512ef5856e1aaf26b"),
+    "id" : 1,
+    "sender" : 1,
+    "receiver" : [ 
+        2
+    ],
+    "text" : "Coucou !",
+    "sendDate" : "05/06/2014 12:56:04"
+}
+
+/* 1 */
+{
+    "_id" : ObjectId("53688a2e12ef5856e1aaf26c"),
+    "id" : 2,
+    "sender" : 2,
+    "receiver" : [ 
+        1
+    ],
+    "text" : "Salut :)",
+    "sendDate" : "05/06/2014 12:56:34"
+}

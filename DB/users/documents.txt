@@ -1,0 +1,23 @@
+/* 0 */
+{
+    "_id" : ObjectId("536886f012ef5856e1aaf269"),
+    "id" : 1,
+    "username" : "Floc",
+    "password" : "5f4dcc3b5aa765d61d8327deb882cf99",
+    "creationDate" : "05/06/2014 12:00:00",
+    "friends" : [ 
+        2
+    ]
+}
+
+/* 1 */
+{
+    "_id" : ObjectId("5368875712ef5856e1aaf26a"),
+    "id" : 2,
+    "username" : "Sam",
+    "password" : "5f4dcc3b5aa765d61d8327deb882cf99",
+    "creationDate" : "05/06/2014 12:00:00",
+    "friends" : [ 
+        1
+    ]
+}
