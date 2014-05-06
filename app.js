@@ -7,6 +7,11 @@ var express = require('express'),
     app = express(),
     httpServer = http.createServer(app);
 
+    global.app = app;
+
+    console.log(require("./server/utils"));
+
+
 /*
  *	Configuration with express
  */
@@ -42,16 +47,6 @@ app.get('/', function(req, res){
 	res.send('Bienvenue sur Simple Chat !')
     });
 
-// Handle 404
-app.use(function(req, res) {
- res.send('404: Page not Found', 404);
- console.log('404'.red);
-});
 
-// Handle 500
-app.use(function(error, req, res, next) {
- res.send('500: Internal Server Error', 500);
- console.log('500'.red);
-});
 
 
