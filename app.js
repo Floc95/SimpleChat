@@ -4,7 +4,6 @@ var express = require('express'),
     http = require('http'),
     colors = require('colors'),
     ejs = require('ejs'),
-    cp = require('child_process'),
     mongodb = require('mongodb'),
     app = express(),
     httpServer = http.createServer(app);
