@@ -1,4 +1,3 @@
-//app.js
 
 var express = require('express'),
     http = require('http'),
@@ -7,6 +6,10 @@ var express = require('express'),
     mongodb = require('mongodb'),
     app = express(),
     httpServer = http.createServer(app);
+
+/*
+ *	Configuration with express
+ */
 
 app.configure(function () {
     app.set('port', 3000);
@@ -25,7 +28,30 @@ app.configure(function () {
         }));
     });
 
-    //Affichage lors du lancement du serveur
+/*
+ *	Demarrage du serveur
+ */
+
     httpServer.listen(app.get('port'), function () {
-    console.log("Simple chat server listening on port %s.".blue, httpServer.address().port);
+    console.log("Simple chat server listening on port %s.".green, httpServer.address().port);
 });
+
+
+app.get('/', function(req, res){
+	//red.send renvoie sur la page web 
+	res.send('Bienvenue sur Simple Chat !')
+    });
+
+// Handle 404
+app.use(function(req, res) {
+ res.send('404: Page not Found', 404);
+ console.log('404'.red);
+});
+
+// Handle 500
+app.use(function(error, req, res, next) {
+ res.send('500: Internal Server Error', 500);
+ console.log('500'.red);
+});
+
+

@@ -10,5 +10,5 @@ nodemon.on('start', function () {
 }).on('quit', function () {
   console.log('App has quit');
 }).on('restart', function (files) {
-  console.log('App restarted due to: ', files);
+  console.log('App restart : ', files);
 });
