@@ -6,15 +6,14 @@ var express = require('express'),
     mongodb = require('mongodb'),
     app = express(),
     httpServer = http.createServer(app);
+    dbsimplechat = require('mongodb').MongoClient,
+    format = require('util').format;
 
     global.app = app;
+    global.colors = colors;
 
-    console.log(require("./server/utils"));
 
-
-/*
- *	Configuration with express
- */
+    global.dbsimplechat = dbsimplechat;
 
 app.configure(function () {
     app.set('port', 3000);
@@ -33,20 +32,13 @@ app.configure(function () {
         }));
     });
 
-/*
- *	Demarrage du serveur
- */
 
-    httpServer.listen(app.get('port'), function () {
+httpServer.listen(app.get('port'), function () {
     console.log("Simple chat server listening on port %s.".green, httpServer.address().port);
-});
-
-
-app.get('/', function(req, res){
-	//red.send renvoie sur la page web 
-	res.send('Bienvenue sur Simple Chat !')
     });
 
+console.log(require("./server/utils/get"));
+console.log(require("./server/utils/set"));
+console.log(require("./server/utils/post"))
 
-
-
+console.log(require("./server/utils/error"));

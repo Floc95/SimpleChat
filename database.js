@@ -5,6 +5,8 @@
     if(err) throw err;
 
     var collection = db.collection('students');
+    //fonction insert
+
     collection.insert({a:2}, function(err, docs) {
 
       collection.count(function(err, count) {
