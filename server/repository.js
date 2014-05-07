@@ -26,26 +26,17 @@ function Repository()
 
 	//Done
     self.getUserByName = function(name, callback){
-        self.usercollection.find(
-            {
-                'username' : name
-            },
-            {
-                _id : 0
-            },
-            function(err, cursor) {
-                var next = function () {
-                    cursor.nextObject(function (err, item) {
-                        if (err || !item) {
-                            return;
-                        }
-                        callback(0, item);
-                        next();
-                    })
-                }
-                next();
-            }
-        );
+        self.usercollection.findOne(
+        {
+          'username' : name
+        }, 
+        {
+         _id : 0
+        },
+        function(err, cursor) {
+            callback(null, cursor);
+        }
+      );
     };
 
     //TODO : Retourner un tableau d'objets

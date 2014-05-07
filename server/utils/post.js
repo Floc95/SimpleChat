@@ -3,7 +3,6 @@ app.post('/login', function(req, res){
     var userpassword = req.body.user.password;
 
     userRepository.getUserByName(userlogin, function(err, data){
-    	console.log('DATA : '.green+data.username);
         if(err){
             console.error((err.stack));
             return;
@@ -12,8 +11,7 @@ app.post('/login', function(req, res){
         {
         	console.log("userpassword : ".red+userpassword);
         	console.log("data.password : ".red+data.password);
-    		if (data.password == md5(userpassword))
-    		{
+    		if (data.password == md5(userpassword)){
         		var message = {};
 				    message.sender = "Floc";
 				    message.receiver = "Marine";
@@ -37,13 +35,17 @@ app.post('/login', function(req, res){
 
 				  console.log(listmessages);
 
-	res.render('chat', { username : data.username, messages : listmessages
-        });
+					res.render('chat', { username : data.username, messages : listmessages
+				        });
     		}
     		else
         		res.render('login', {
             		errormessage: 'Erreur de mot de passe'
         		});  
     	}
+    	else
+    		res.render('login', {
+            		errormessage: 'Utilisateur introuvable'
+        		});  
     });
 });
