@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Chat</title>
+    <title>Simple Chat - inscription</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -19,15 +19,18 @@
   <body>
 
     <div class="container">
-      <form class="form-login" role="form" method="post" action="/login">
-        <h2 class="form-login-heading">Simple Chat</h2>
+      <form class="form-login" role="form" method="post" action="/signin">
+        <h2 class="form-login-heading">Inscription</h2>
 
         <input type="text" class="form-control" placeholder="Login" required autofocus name="user[login]">
+        <br>
         <input type="password" class="form-control" placeholder="Password" required name="user[password]">
+        <input type="password" class="form-control" placeholder="Confirm password" required name="user[confirmpassword]">
+
         <p style="color:red;"><%= errormessage %></p>
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Accéder</button>
-        <a href="signin">Inscription</a>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>
+        <a href="login">Login</a>
 
       </form>
 

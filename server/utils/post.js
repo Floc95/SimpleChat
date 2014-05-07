@@ -1,3 +1,5 @@
+
+//Login utilisateur
 app.post('/login', function(req, res){
     var userlogin = req.body.user.login;
     var userpassword = req.body.user.password;
@@ -12,6 +14,11 @@ app.post('/login', function(req, res){
         	console.log("userpassword : ".red+userpassword);
         	console.log("data.password : ".red+data.password);
     		if (data.password == md5(userpassword)){
+    			logusers[data.username] = req.sessionID;
+
+    			//getmessage : retourne tous les objets messages sous forme de tbleau d'objets
+
+    			/*
         		var message = {};
 				    message.sender = "Floc";
 				    message.receiver = "Marine";
@@ -32,10 +39,16 @@ app.post('/login', function(req, res){
 				  listmessages.push(message);
 				  listmessages.push(message2);
 				  listmessages.push(message3);
+				  */
+			  	var defaultmessage = [];
+			  	var message = {};
+			  		message.sender = '';
+			  		message.text = 'Veuillez sélectionner un utilisateur connecté pour pouvoir communiquer';
+			  		message.date = '';
 
-				  console.log(listmessages);
+			  	defaultmessage.push(message);
 
-					res.render('chat', { username : data.username, messages : listmessages
+				res.render('chat', { username : data.username, messages : defaultmessage
 				        });
     		}
     		else
@@ -48,4 +61,25 @@ app.post('/login', function(req, res){
             		errormessage: 'Utilisateur introuvable'
         		});  
     });
+});
+
+//Inscription
+app.post('/signin', function(req, res){
+ 	var userlogin = req.body.user.login;
+    var userpassword = req.body.user.password;
+    var userconfirmpassword = req.body.user.confirmpassword;
+	//Faire un findOne et vérifier si l'utilisateur existe
+	userRepository.getUserByName(userlogin, function(err, data){
+        if(err){
+            console.error((err.stack));
+            return;
+        }
+        if (data)
+        	res.render('signin', {
+            		errormessage: 'Un utilisateur avec le même login est déjà existant, veuillez choisir un autre login.'
+        		});  
+        else
+        	res.send("Utilisateur inscrit");
+	//Faire un insert
+	});
 });

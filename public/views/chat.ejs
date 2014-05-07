@@ -29,22 +29,22 @@
     <br><br><br>
     <ul class="nav nav-tabs" id="myTab">
       <li class="active"><a href="#inbox" data-toggle="tab"><i class="fa fa-envelope-o"></i> Chat</a></li>
-      <li><a href="" ><i ></i> Amis</a></li>
-      <li><a href="" ><i ></i> Profil</a></li>
-      <li><a href="" ><i ></i> Déconnexion</a></li>
+      <!--<li><a href="" ><i ></i> Amis</a></li>
+      <li><a href="" ><i ></i> Profil</a></li>-->
+      <li><a href="unlog/<%= username %>" ><i ></i> Déconnexion</a></li>
     </ul>
     
     <div class="tab-content">
       <div class="tab-pane active" id="inbox">
       <!--Debut content a copier-->
-      <% for(var i=0; i<messages.length; i++) { %>
-        <a type="button" data-toggle="collapse" data-target="#a1">
-              <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
-                <div class="btn-group col-md-10"><%= messages[i].sender %> : <%= messages[i].content%></div>
-                <div class="pull-right"><i class="glyphicon glyphicon-time"></i> <%= messages[i].date %></div>
-              </div>
-        </a>
-      <% } %>
+        <% for(var i=0; i<messages.length; i++) { %>
+          <a type="button" data-toggle="collapse" data-target="#a1">
+                <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
+                  <div class="btn-group col-md-10"><%= messages[i].sender %> <%= messages[i].text%></div>
+                  <div class="pull-right"><i class="glyphicon glyphicon-time"></i> <%= messages[i].date %></div>
+                </div>
+          </a>
+        <% } %>
       <!--Fin content a copier-->
         <br>
       </div>

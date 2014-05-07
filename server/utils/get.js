@@ -44,22 +44,35 @@ app.get('/login', function(req, res){
         });
 });
 
+app.get('/unlog/:login', function(req, res){
+  //parcourir la map d'utilisateur connecté, pour l'utilisateur dont l'id est egal a la session mettre à null
+  res.render('login', {
+            errormessage: ''
+        });
+});
+
+app.get('/signin', function(req, res){
+  res.render('signin', {
+            errormessage: ''
+        });
+});
+
 app.get('/chat', function(req, res){
 
   var message = {};
     message.sender = "Floc";
     message.receiver = "Marine";
-    message.content = "Coucou !";
+    message.text = "Coucou !";
     message.date = "12:12";
   var message2 = {};
     message2.sender = "Marine";
     message2.receiver = "Floc";
-    message2.content = "Salut :D";
+    message2.text = "Salut :D";
     message2.date = "12:13";
   var message3 = {};
     message3.sender = "Floc";
     message3.receiver = "Marine";
-    message3.content = "les cours le samedi c'est trop pourri !!!!!!!!!!!!!!!! J'ai trop envie de sécher :p";
+    message3.text = "les cours le samedi c'est trop pourri !!!!!!!!!!!!!!!! J'ai trop envie de sécher :p";
     message3.date = "12:14";
 
   var listmessages = [];
