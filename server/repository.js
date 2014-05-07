@@ -6,45 +6,82 @@ function Repository()
     if(err) throw err;
 
     self.usercollection = db.collection('users');
-    console.log("Collection : "+self.usercollection);
+  	self.messagecollection = db.collection('messages');
 	});
 
-	self.getUser = function(id, callback) {
-	   	console.log(self.usercollection.find(
+  	//Done
+	self.getUserById = function(id, callback) {
+	   	self.usercollection.findOne(
    	   	{
-          'username' : 'Floc'
+          'id' : id
    	   	}, 
        	{
          _id : 0
        	},
    	   	function(err, cursor) {
-           	var next = function () {
-               	cursor.nextObject(function (err, item) {
-                   	if (err || !item) {
-                       return;
-                   	}
-                   	console.log(item);
-                   	next();
-               	})
-
-           	}
-           	next();
+           	callback(null, cursor);
        	}
-  		));
+  		);
 	};
 
+	//Done
+    self.getUserByName = function(name, callback){
+        self.usercollection.find(
+            {
+                'username' : name
+            },
+            {
+                _id : 0
+            },
+            function(err, cursor) {
+                var next = function () {
+                    cursor.nextObject(function (err, item) {
+                        if (err || !item) {
+                            return;
+                        }
+                        callback(0, item);
+                        next();
+                    })
+                }
+                next();
+            }
+        );
+    };
+
+    //TODO : Retourner un tableau d'objets
 	self.getUsers = function(ids) {
 		// TODO
 	};
 
+	//TODO : Faire un insert
 	self.createUser = function(username, id) {
 		// TODO
 	};
 
+	//TODO : Retourner tous les messages entre 2 utilisateurs
 	self.getMessages = function(senderId, receiverIds, messagesCount) {
-		// TODO
+		self.messagecollection.find(
+            {
+                'sender' : senderId
+            },
+            {
+                _id : 0
+            },
+            function(err, cursor) {
+                var next = function () {
+                    cursor.nextObject(function (err, item) {
+                        if (err || !item) {
+                            return;
+                        }
+                        callback(0, item);
+                    })
+                }
+                next();
+            }
+        );
 	};
 
+	//TODO : jouter un nouveau message en base
 	self.createMessage = function(senderId, receiverIds, text) {
 		// TODO
 	}

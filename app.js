@@ -8,9 +8,12 @@ var express = require('express'),
     app = express(),
     httpServer = http.createServer(app);
     dbsimplechat = require('mongodb').MongoClient,
-    format = require('util').format;
+    format = require('util').format,
+    crypto = require('crypto'),
+    md5 = require('MD5');
 
     global.app = app;
+    global.crypto = crypto;
     global.colors = colors;
 
 var logusers = {} //Hashmap avec les id utilisateur et session
@@ -54,7 +57,6 @@ global.userRepository = userRepository;
 //Définitions des fichiers utils
 
 console.log(require("./server/utils/get"));
-console.log(require("./server/utils/set"));
-console.log(require("./server/utils/post"))
+console.log(require("./server/utils/post"));
 
 console.log(require("./server/utils/error"));
