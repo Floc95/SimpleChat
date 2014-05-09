@@ -11,7 +11,8 @@ var express = require('express'),
     format = require('util').format,
     crypto = require('crypto'),
     md5 = require('MD5'),
-    socketio = require('socket.io');
+    socketio = require('socket.io').listen(80);
+
 
     global.app = app;
     global.crypto = crypto;
@@ -45,6 +46,20 @@ app.configure(function () {
 
 httpServer.listen(app.get('port'), function () {
     console.log("Simple chat server listening on port %s.".green, httpServer.address().port);
+
+    socketio.sockets.on('connection', function (socket) {
+      //socket.emit('news', { hello: 'world' });
+      socket.on('sendMessage', function (data) {
+        // Format de la variable data :
+        // { idSender: 1, idReceiver: 1, senderName : '', reveiverName = '', text: 'test', sendDate: '...' }
+        
+        // Sauvegarde en bdd
+
+        console.log("Envoi de message : " + data);
+        socketio.sockets.emit('receiveMessage', data);
+      });
+    });
+
     });
 
 

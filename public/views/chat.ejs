@@ -4,10 +4,43 @@
 <title>Simple Chat</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/chat.css" rel="stylesheet">
+    <script src="http://localhost/socket.io/socket.io.js"></script>
+    <script src="../js/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<script>
+  var socket = io.connect('http://localhost:80');
+
+  function addMessage(username, text, date)
+  {
+    $('#inbox').append("<a type=\"button\" data-toggle=\"collapse\" data-target=\"#a1\">" +
+                "<div class=\"btn-toolbar well well-sm\" role=\"toolbar\"  style=\"margin:0px;\">" +
+                  "<div class=\"btn-group col-md-9\"><b>" + username + " : </b> " + text + "</div>" +
+                  "<div class=\"pull-right\"><i class=\"glyphicon glyphicon-time\"></i> " + date + "</div>" +
+                "</div>" +
+          "</a>");
+  }
+
+  socket.on('receiveMessage', function (data) {
+    if (data.idReceiver == <%= userid %>) {
+      addMessage(data.senderName, data.text, data.sendDate);
+    }
+    //socket.emit('my other event', { my: 'data' });
+  });
+
+  function sendMessage()
+  {
+    addMessage('<%= users[userid]%>', $('#tbMessages').val(), new Date().toLocaleString());
+    socket.emit('sendMessage', { idSender: <%= userid %>, idReceiver: <%= friendid%>, senderName: '<%= users[userid]%>', receiverName: '<%=users[friendid] %>', text: $('#tbMessages').val(), sendDate: new Date().toLocaleString() });
+    $('#tbMessages').val('');
+  }
+
+
+
+</script>
 
 <div class="container">
 	<div class="row well">
@@ -47,15 +80,15 @@
           </a>
         <% } %>
       <!--Fin content a copier-->
-        <br>
-      </div>
+        
+      </div><br>
       <!--Si un utilisateur--> 
-      <form method="post" action="/sendmessage">
-          <input class="col-md-10" type="text" name="messagepost[text]">
+      <div>
+          <input class="col-md-10" type="text" name="messagepost[text]" id="tbMessages">
           <input type="hidden" name="messagepost[receiver]" value="<%= friendid %>">
           <input type="hidden" name="messagepost[sender]" value="<%= userid %>">
-          <button class="btn" type="submit">Post</button>
-      </form>
+          <button class="btn" onClick="sendMessage()" type="submit">Post</button>
+      </div>
 
     </div>
 

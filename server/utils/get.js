@@ -87,26 +87,24 @@ app.get('/chat', function(req, res){
 
 app.get('/chat/:user', function(req, res){
 
-  for( var user in logusers )
-    if( logusers.hasOwnProperty( user ) )
-      if( logusers[user] == req.sessionID )
+  for( var user in logusers ){
+    if( logusers.hasOwnProperty( user ) ){
+      if( logusers[user] == req.sessionID ){
         var senderName = user;
-        userRepository.getUserByName(user, function(err, objectuser){
-            var idSender = objectuser.id;
+        userRepository.getUserByName(user, function(err, res_user){
+            var idSender = res_user.id;
 
-            userRepository.getUserByName(req.param("user"), function(err, objectuser){
-                var idReceiver = objectuser.id;
+            userRepository.getUserByName(req.param("user"), function(err, res_user2){
+                var idReceiver = res_user2.id;
 
                 userRepository.getMessages(idSender, idReceiver, 50, function(err, messages)
                   {
-                    console.log(messages);
-
                     var userHashMap = {};
                     userHashMap[idSender] = senderName;
                     userHashMap[idReceiver] = req.param("user");
                     res.render('chat', { 
                         users : userHashMap,
-                        username : user, 
+                        username : req.param("user"), 
                         friendid : idReceiver, 
                         userid : idSender,
                         messages : messages
@@ -116,39 +114,7 @@ app.get('/chat/:user', function(req, res){
             });
 
         });
-/*
-   var message2 = {};
-      message2.sender = "Marine";
-      message2.receiver = "Floc";
-      message2.text = "Salut :D";
-      message2.date = "12:13";
-    var message3 = {};
-      message3.sender = "Floc";
-      message3.receiver = "Marine";
-      message3.text = "les cours le samedi c'est trop pourri !!!!!!!!!!!!!!!! J'ai trop envie de sécher :p";
-      message3.date = "12:14";
-
-    var listmessages = [];
-    listmessages.push(message2);
-    listmessages.push(message3);
-    for( var user in logusers )
-        if( logusers.hasOwnProperty( user ) )
-          if( logusers[user] == req.sessionID )
-          {
-            //user = utilisateur courant 
-            var currentfriend = req.param("user");
-            userRepository.getUserByName(user, function(err, sender){
-              userRepository.getUserByName(currentfriend, function(err, receiver){
-                  res.render('chat', { 
-                    friendid: receiver.id,
-                    userid :  sender.id,
-                    username : user, 
-                    messages : listmessages
-                });
-              });
-            });
-            //Récupérer les messages entre 2 utilisateurs
-            //Mettre le res.render dans le callback
-            
-          }*/
+      }
+    }
+  }
     });
