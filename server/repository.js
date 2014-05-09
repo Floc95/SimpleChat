@@ -7,7 +7,20 @@ function Repository()
 
     self.usercollection = db.collection('users');
   	self.messagecollection = db.collection('messages');
-	   });
+
+    db.collection("messages", function(err, collection) {
+        collection.count(function (err, count) {
+            self.messagecounter = count;
+        });
+    });
+
+    db.collection("users", function(err, collection) {
+        collection.count(function (err, count) {
+            self.usercounter= count;
+        });
+    });
+
+  });
 
   	//Done
 	
@@ -46,16 +59,13 @@ function Repository()
 
 	//TODO : Faire un insert
 	self.createUser = function(user, callback) {
-    //Comment résupérer l'id ?
-    console.log('Entrée dans la fonction createUser'.blue);
     self.usercollection.insert({
-      id : 3, 
+      id : self.usercounter+1,
       username : user.login, 
       password : md5(user.password),
       creationDate : Date.now()
     },
     function(err, cursor) {
-      console.log('Entrée dans la fonction callback de create user'.red);
       callback(0, 0);
     }
     );
@@ -97,17 +107,14 @@ function Repository()
 
 	//TODO : jouter un nouveau message en base
 	self.createMessage = function(message, callback) {
-    console.log('Entrée dans la fonction createMessage'.red);
-    var idmessage = parseInt(self.messagecollection.count()+1);
 		self.messagecollection.insert({
-      id : idmessage, 
-      sender : message.sender, 
-      receiver : message.receiver,
+      id : self.messagecounter+1,
+      sender : message.idSender, 
+      receiver : message.idReceiver,
       text : message.text,
-      sendDate : Date.now()
+      sendDate : message.sendDate
     },
      function(err, cursor) {
-      console.log('Entrée dans la fonction callback de create message'.red);
       callback(0, 0);
     });
   };

@@ -54,6 +54,7 @@ httpServer.listen(app.get('port'), function () {
         // { idSender: 1, idReceiver: 1, senderName : '', reveiverName = '', text: 'test', sendDate: '...' }
         
         // Sauvegarde en bdd
+        userRepository.createMessage(data, function(a, b) {});
 
         console.log("Envoi de message : " + data);
         socketio.sockets.emit('receiveMessage', data);

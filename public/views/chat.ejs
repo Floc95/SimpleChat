@@ -25,7 +25,7 @@
   }
 
   socket.on('receiveMessage', function (data) {
-    if (data.idReceiver == <%= userid %>) {
+    if (data.idReceiver == <%= userid %> && data.idSender == <%= friendid%>) {
       addMessage(data.senderName, data.text, data.sendDate);
     }
     //socket.emit('my other event', { my: 'data' });
