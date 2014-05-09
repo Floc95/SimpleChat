@@ -1,124 +1,127 @@
 <html>
 
-<head>
-<title>Simple Chat</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/chat.css" rel="stylesheet">
-    <script src="http://localhost/socket.io/socket.io.js"></script>
-    <script src="../js/jquery-2.1.1.min.js"></script>
-</head>
+  <head>
+    <title>Simple Chat</title>
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
+      <link href="../css/chat.css" rel="stylesheet">
+      <script src="http://localhost/socket.io/socket.io.js"></script>
+      <script src="../js/jquery-2.1.1.min.js"></script>
+      <script src="../js/Markdown.Converter.js"></script>
+  </head>
 
-<body>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <body>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-<script>
-  var socket = io.connect('http://localhost:80');
+    <script>
+      var socket = io.connect('http://localhost:80');
+      var mdConverter = new Markdown.Converter();
 
-  function scrollDown(selector)
-  {
-    var elem    = $(selector);
-    var height = elem[0].scrollHeight;
-    elem.scrollTop(height);
-  }
+      function scrollDown(selector)
+      {
+        var elem    = $(selector);
+        var height = elem[0].scrollHeight;
+        elem.scrollTop(height);
+      }
 
-  function addMessage(username, text, date)
-  {
-    $('#inbox').append("<a type=\"button\" data-toggle=\"collapse\" data-target=\"#a1\">" +
-                "<div class=\"btn-toolbar well well-sm\" role=\"toolbar\"  style=\"margin:0px;\">" +
-                  "<div class=\"btn-group col-md-9\"><b>" + username + " : </b> " + text + "</div>" +
-                  "<div class=\"pull-right\"><i class=\"glyphicon glyphicon-time\"></i> " + date + "</div>" +
-                "</div>" +
-          "</a>");
-    scrollDown("#inbox");
-  }
+      function addMessage(username, text, date)
+      {
+        $('#inbox').append("<a type=\"button\" data-toggle=\"collapse\" data-target=\"#a1\">" +
+                    "<div class=\"btn-toolbar well well-sm\" role=\"toolbar\"  style=\"margin:0px;\">" +
+                      "<div class=\"btn-group col-md-9\"><b>" + username + " : </b> " + mdConverter.makeHtml(text) + "</div>" +
+                      "<div class=\"pull-right\"><i class=\"glyphicon glyphicon-time\"></i> " + date + "</div>" +
+                    "</div>" +
+              "</a>");
+        scrollDown("#inbox");
+      }
 
-  socket.on('receiveMessage', function (data) {
-    if (data.idReceiver == <%= userid %> && data.idSender == <%= friendid%>)
-      addMessage(data.senderName, data.text, data.sendDate);
-  });
+      socket.on('receiveMessage', function (data) {
+        if (data.idReceiver == <%= userid %> && data.idSender == <%= friendid%>)
+          addMessage(data.senderName, data.text, data.sendDate);
+      });
 
-  function sendMessage()
-  {
-    addMessage('<%= users[userid]%>', $('#tbMessages').val(), new Date().toLocaleString());
-    socket.emit('sendMessage', { idSender: <%= userid %>, idReceiver: <%= friendid%>, senderName: '<%= users[userid]%>', receiverName: '<%=users[friendid] %>', text: $('#tbMessages').val(), sendDate: new Date().toLocaleString() });
-    $('#tbMessages').val('');
-  }
+      function sendMessage()
+      {
+        addMessage('<%= users[userid]%>', $('#tbMessages').val(), new Date().toLocaleString());
+        socket.emit('sendMessage', { idSender: <%= userid %>, idReceiver: <%= friendid%>, senderName: '<%= users[userid]%>', receiverName: '<%=users[friendid] %>', text: $('#tbMessages').val(), sendDate: new Date().toLocaleString() });
+        $('#tbMessages').val('');
+      }
 
-  socket.on('setUserConnect', function (data) {
-    setUsers(data);
-  });
+      socket.on('setUserConnect', function (data) {
+        setUsers(data);
+      });
 
-  function setUsers(data)
-  {
-    $('#userList').innerHtml = "";
-    for (var user in data) {
-      if (user != '<%= users[userid] %>')
-        $('#userList').append("<li><a href=\"/chat/" + user + "\"><i class=\"fa fa-user\"></i> " + user + "</a></li>");
-    };
-  }
+      function setUsers(data)
+      {
+        $('#userList').html("");
+        $('#userList').append("<li class=\"active\"><a>Amis</a></li>");
+        for (var user in data) {
+          if (user != '<%= users[userid] %>')
+            $('#userList').append("<li><a href=\"/chat/" + user + "\"><i class=\"fa fa-user\"></i> " + user + "</a></li>");
+        };
+      }
 
-  $(function() {
-    scrollDown("#inbox");
-  });
+      $(function() {
+        scrollDown("#inbox");
+      });
 
-</script>
+    </script>
 
-<div class="container">
-	<div class="row well">
-		<div class="col-md-2">
-    	    <ul class="nav nav-pills nav-stacked well" id="userList">
-              <li  class="active"><a>Amis</a></li>
-              <!--Penser a retirer l'utilisateur actif-->
-              <% for( var user in logusers ){ %>
-                <% if (user != users[userid]) { %>
-                  <li><a href="/chat/<%= user %>"><i class="fa fa-user" ></i> <%=  user %></a></li>
-              <%
-                }
-              }
-              %>
-          </ul>
+    <div class="container">
+    	<div class="row well">
+    		<div class="col-md-2">
+        	    <ul class="nav nav-pills nav-stacked well" id="userList">
+                  <li  class="active"><a>Amis</a></li>
+                  <!--Penser a retirer l'utilisateur actif-->
+                  <% for( var user in logusers ){ %>
+                    <% if (user != users[userid]) { %>
+                      <li><a href="/chat/<%= user %>"><i class="fa fa-user" ></i> <%=  user %></a></li>
+                  <%
+                    }
+                  }
+                  %>
+              </ul>
+            </div>
+            <div class="col-md-10">
+                    <div class="panel">
+                        <img class="pic img-circle" src="<%= avatar %>" alt="<%= username %>">
+                        <div class="name"><small><%= username %></small></div>                   
+                    </div>       
+        <br><br><br>
+        <ul class="nav nav-tabs" id="myTab">
+          <li class="active"><a href="#inbox" data-toggle="tab"><i class="fa fa-envelope-o"></i> Chat</a></li>
+          <!--<li><a href="" ><i ></i> Amis</a></li>
+          <li><a href="" ><i ></i> Profil</a></li>-->
+          <li><a href="/deco" ><i ></i> Déconnexion</a></li>
+        </ul>
+        
+        <div class="tab-content">
+          <div class="tab-pane active" id="inbox">
+            <% for(var i=0; i<messages.length; i++) { %>
+              <a type="button" data-toggle="collapse" data-target="#a1">
+                    <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
+                      <div class="btn-group col-md-9"><b><%= users[messages[i].sender] %> : </b> <%- mdConverter.makeHtml(messages[i].text) %></div>
+                      <div class="pull-right"><i class="glyphicon glyphicon-time"></i> <%= messages[i].sendDate %></div>
+                    </div>
+              </a>
+            <% } %>        
+          </div>
+
+          <br>
+
+          <div class="col-md-10">
+              <input class="form-control" type="text" name="messagepost[text]" id="tbMessages"
+                onkeypress="if(event.keyCode == 13){ sendMessage(); }">          
+          </div>
+
+          <div class="col-md-2">
+            <button class="btn btn-block btn-success" onClick="sendMessage()">Envoyer</button>
+          </div>
+
         </div>
-        <div class="col-md-10">
-                <div class="panel">
-                    <img class="pic img-circle" src="<%= avatar %>" alt="<%= username %>">
-                    <div class="name"><small><%= username %></small></div>                   
-                </div>       
-    <br><br><br>
-    <ul class="nav nav-tabs" id="myTab">
-      <li class="active"><a href="#inbox" data-toggle="tab"><i class="fa fa-envelope-o"></i> Chat</a></li>
-      <!--<li><a href="" ><i ></i> Amis</a></li>
-      <li><a href="" ><i ></i> Profil</a></li>-->
-      <li><a href="/deco" ><i ></i> Déconnexion</a></li>
-    </ul>
-    
-    <div class="tab-content">
-      <div class="tab-pane active" id="inbox">
-        <% for(var i=0; i<messages.length; i++) { %>
-          <a type="button" data-toggle="collapse" data-target="#a1">
-                <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
-                  <div class="btn-group col-md-9"><b><%= users[messages[i].sender] %> : </b> <%= messages[i].text%></div>
-                  <div class="pull-right"><i class="glyphicon glyphicon-time"></i> <%= messages[i].sendDate %></div>
-                </div>
-          </a>
-        <% } %>        
-      </div>
 
-      <br>
-
-      <div class="col-md-10">
-          <input class="form-control" type="text" name="messagepost[text]" id="tbMessages"
-            onkeypress="if(event.keyCode == 13){ sendMessage(); }">          
-      </div>
-
-      <div class="col-md-2">
-        <button class="btn btn-block btn-success" onClick="sendMessage()">Envoyer</button>
-      </div>
-
+       </div>
+    	</div>  
     </div>
-
-   </div>
-	</div>  
-</div>
-</body>
+  </body>
 
 </html>

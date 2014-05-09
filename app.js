@@ -11,9 +11,11 @@ var express = require('express'),
     format = require('util').format,
     crypto = require('crypto'),
     md5 = require('MD5'),
-    socketio = require('socket.io').listen(80);
+    socketio = require('socket.io').listen(80),
+    pagedown = require("pagedown");
 
 
+    global.mdConverter = new pagedown.Converter();
     global.app = app;
     global.crypto = crypto;
     global.colors = colors;

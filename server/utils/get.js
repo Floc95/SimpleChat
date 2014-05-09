@@ -38,6 +38,7 @@ app.get('/deco', function(req, res){
     if(logusers.hasOwnProperty(user))
        if(logusers[user] == req.sessionID ){
           delete logusers[user];
+          userConnect();
           res.redirect("/login");
        }
   });

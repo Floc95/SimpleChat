@@ -63,6 +63,7 @@ function Repository()
       id : self.usercounter+1,
       username : user.login, 
       password : md5(user.password),
+      avatar: user.avatar,
       creationDate : Date.now()
     },
     function(err, cursor) {

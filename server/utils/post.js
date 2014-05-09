@@ -39,6 +39,7 @@ app.post('/signin', function(req, res){
 
  	user.login = req.body.user.login;
     user.password = req.body.user.password;
+    user.avatar = "../img/inconnu.jpg";
 	
     userRepository.getUserByName(user.login, function(err, data){
         if(err){
@@ -53,8 +54,6 @@ app.post('/signin', function(req, res){
         	userRepository.createUser(user, function(err, data){
                 res.redirect('login');
             });         
-        
-	//Faire un insert
 		});
 	});
 
