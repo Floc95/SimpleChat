@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-10">
                 <div class="panel">
-                    <img class="pic img-circle" src="http://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/twDq00QDud4/s120-c/photo.jpg" alt="...">
+                    <img class="pic img-circle" src="../img/oooh.gif" alt="...">
                     <div class="name"><small><%= username %></small></div>                   
                 </div>       
     <br><br><br>
@@ -31,7 +31,7 @@
       <li class="active"><a href="#inbox" data-toggle="tab"><i class="fa fa-envelope-o"></i> Chat</a></li>
       <!--<li><a href="" ><i ></i> Amis</a></li>
       <li><a href="" ><i ></i> Profil</a></li>-->
-      <li><a href="unlog/<%= username %>" ><i ></i> Déconnexion</a></li>
+      <li><a href="deco" ><i ></i> Déconnexion</a></li>
     </ul>
     
     <div class="tab-content">
@@ -40,7 +40,7 @@
         <% for(var i=0; i<messages.length; i++) { %>
           <a type="button" data-toggle="collapse" data-target="#a1">
                 <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
-                  <div class="btn-group col-md-10"><%= messages[i].sender %> <%= messages[i].text%></div>
+                  <div class="btn-group col-md-10"><b><%= messages[i].sender %></b> <%= messages[i].text%></div>
                   <div class="pull-right"><i class="glyphicon glyphicon-time"></i> <%= messages[i].date %></div>
                 </div>
           </a>
@@ -48,6 +48,12 @@
       <!--Fin content a copier-->
         <br>
       </div>
+      <form method="post" action"sendmessage">
+          <input class="col-md-10" type="text">
+          <button class="btn" type="submit">Post</button>
+
+      </form>
+
     </div>
 
    </div>

@@ -56,7 +56,6 @@ global.userRepository = userRepository;
 
 //Définitions des fichiers utils
 
-console.log(require("./server/utils/get"));
-console.log(require("./server/utils/post"));
-
-console.log(require("./server/utils/error"));
+require("./server/utils/get");
+require("./server/utils/post");
+require("./server/utils/error");

@@ -7,10 +7,11 @@ function Repository()
 
     self.usercollection = db.collection('users');
   	self.messagecollection = db.collection('messages');
-	});
+	   });
 
   	//Done
-	self.getUserById = function(id, callback) {
+	
+  self.getUserById = function(id, callback) {
 	   	self.usercollection.findOne(
    	   	{
           'id' : id
@@ -22,10 +23,9 @@ function Repository()
            	callback(null, cursor);
        	}
   		);
-	};
+	   };
 
-	//Done
-    self.getUserByName = function(name, callback){
+  self.getUserByName = function(name, callback){
         self.usercollection.findOne(
         {
           'username' : name
@@ -36,18 +36,28 @@ function Repository()
         function(err, cursor) {
             callback(null, cursor);
         }
-      );
-    };
+        );
+        };
 
-    //TODO : Retourner un tableau d'objets
+  //TODO : Retourner un tableau d'objets
 	self.getUsers = function(ids) {
 		// TODO
-	};
+	 };
 
 	//TODO : Faire un insert
-	self.createUser = function(username, id) {
-		// TODO
-	};
+	self.createUser = function(user, callback) {
+    //Comment résupérer l'id ?
+    console.log('Entrée dans la fonction createUser'.blue);
+    self.messagecollection.insert({
+      id : 3, 
+      username : user.login, 
+      password : md5(user.password),
+      creationDate : Date.now()
+    });
+    //Problème de callback
+    console.log('Création terminée'.green);
+    callback(0, 0);
+	 };
 
 	//TODO : Retourner tous les messages entre 2 utilisateurs
 	self.getMessages = function(senderId, receiverIds, messagesCount) {
@@ -70,12 +80,42 @@ function Repository()
                 next();
             }
         );
-	};
+	 };
+
+  //TODO : Retourner tous les messages de l'utilisateur connectés : dans la limite de 10
+  self.getMessages = function(senderId, callback) {
+    self.messagecollection.find(
+            {
+                'sender' : senderId
+            },
+            {
+                _id : 0
+            },
+            function(err, cursor) {
+                var next = function () {
+                    cursor.nextObject(function (err, item) {
+                        if (err || !item) {
+                            return;
+                        }
+                        callback(0, item);
+                    })
+                }
+                next();
+            }
+        );
+   };
 
 	//TODO : jouter un nouveau message en base
-	self.createMessage = function(senderId, receiverIds, text) {
-		// TODO
-	}
-}
+	self.createMessage = function(message) {
+		self.messagecollection.insert({
+      id : 3, 
+      sender : message.sender, 
+      receiver : message.receiver,
+      text : message.text,
+      sendDate : Date.now()
+    });
+    return;
+  };
 
+}
 exports.Repository = Repository;
