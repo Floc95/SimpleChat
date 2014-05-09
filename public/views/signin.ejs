@@ -18,18 +18,32 @@
 
   <body>
 
+    <script type="text/javascript">
+      function formvalidation(){
+        if(document.formsign.password.value == document.formsign.confirmpassword.value){
+          errormessage.innerHTML = "";
+          document.formsign.submit();
+        }
+        else{
+          errormessage.innerHTML = "Les mots de passe sont différents";
+          return false;
+        }
+      }
+    </script>
+
     <div class="container">
-      <form class="form-login" role="form" method="post" action="/signin">
+
+      <form class="form-login" role="form" method="post" action="/signin" name="formsign" onsubmit="return formvalidation();">
         <h2 class="form-login-heading">Inscription</h2>
 
         <input type="text" class="form-control" placeholder="Login" required autofocus name="user[login]">
         <br>
-        <input type="password" class="form-control" placeholder="Password" required name="user[password]">
-        <input type="password" class="form-control" placeholder="Confirm password" required name="user[confirmpassword]">
+        <input type="password" class="form-control" placeholder="Password" required name="user[password]" id="password">
+        <input type="password" class="form-control" placeholder="Confirm password" required name="user[confirmpassword]" id="confirmpassword">
 
-        <p style="color:red;"><%= errormessage %></p>
+        <p style="color:red;" id="errormessage"><%= errormessage %></p>
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="formvalidation()">Enregistrer</button>
         <a href="login" class="btn btn-info btn-block">Login</a>
 
       </form>
