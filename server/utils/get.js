@@ -21,7 +21,7 @@ app.get('/login', function(req, res){
   for( var user in logusers )
     if( logusers.hasOwnProperty( user ) )
        if( logusers[user] == req.sessionID ){
-        console.log('redirection vers chat'.red);
+          console.log('redirection vers chat'.red);
           res.redirect('/chat');
        }
     console.log('affichage de la page login'.green);
@@ -43,47 +43,19 @@ app.get('/deco', function(req, res){
   });
 
 app.get('/chat', function(req, res){
-    console.log("Entrée dans la fonction get chat".green);
-
-    /*jeu de test des messages*/
-    var message = {};
-      message.sender = "Floc";
-      message.receiver = "Marine";
-      message.text = "Coucou !";
-      message.date = "12:12";
-    var message2 = {};
-      message2.sender = "Marine";
-      message2.receiver = "Floc";
-      message2.text = "Salut :D";
-      message2.date = "12:13";
-    var message3 = {};
-      message3.sender = "Floc";
-      message3.receiver = "Marine";
-      message3.text = "les cours le samedi c'est trop pourri !!!!!!!!!!!!!!!! J'ai trop envie de sécher :p";
-      message3.date = "12:14";
-
-    var listmessages = [];
-    listmessages.push(message);
-    listmessages.push(message2);
-    listmessages.push(message3);
-
-    /*fin de jeu de test des messages*/  
-
-    console.log('id de session : '+req.sessionID);
-
-    //Ajouter une liste d'utilisateurs connectés
-
-    for( var user in logusers )
-      if( logusers.hasOwnProperty( user ) )
-        if( logusers[user] == req.sessionID )
-          res.render('chat', {
-            friendid :'', 
-            userid :'',
-            username : user, 
-            users : [],
-            messages : listmessages
+  for( var user in logusers ){
+    if( logusers.hasOwnProperty( user ) ){
+      if( logusers[user] == req.sessionID ){
+        userRepository.getUserByName(user, function(err, res_user){
+          res.render('home', { 
+            username : res_user.username,
+            avatar : res_user.avatar
           });
-    });
+        });
+      }
+    }
+  }
+});
 
 app.get('/chat/:user', function(req, res){
 
@@ -106,6 +78,7 @@ app.get('/chat/:user', function(req, res){
                         users : userHashMap,
                         username : req.param("user"), 
                         friendid : idReceiver, 
+                        avatar : res_user2.avatar,
                         userid : idSender,
                         messages : messages
                     });

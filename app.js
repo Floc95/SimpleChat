@@ -48,16 +48,15 @@ httpServer.listen(app.get('port'), function () {
     console.log("Simple chat server listening on port %s.".green, httpServer.address().port);
 
     socketio.sockets.on('connection', function (socket) {
-      //socket.emit('news', { hello: 'world' });
       socket.on('sendMessage', function (data) {
-        // Format de la variable data :
-        // { idSender: 1, idReceiver: 1, senderName : '', reveiverName = '', text: 'test', sendDate: '...' }
-        
         // Sauvegarde en bdd
         userRepository.createMessage(data, function(a, b) {});
-
-        console.log("Envoi de message : " + data);
         socketio.sockets.emit('receiveMessage', data);
+      });
+
+      socket.on('userConnect', function (data) {
+        logusers[data.name] = data.user;
+        socketio.sockets.emit('setUserConnect', logusers);
       });
     });
 
@@ -70,6 +69,13 @@ var Repository = require('./server/repository').Repository;
 var userRepository = new Repository();
 
 global.userRepository = userRepository;
+
+global.userConnect = function(user)
+{
+    userRepository.getUserByName(user, function(err, data) {
+        socketio.sockets.emit('setUserConnect', logusers);
+    });
+};
 
 //Définitions des fichiers utils
 

@@ -15,11 +15,9 @@ app.post('/login', function(req, res){
         	console.log("data.password : ".red+data.password);
     		if (data.password == md5(userpassword)){
     			logusers[data.username] = req.sessionID;
-			 	console.log(logusers);
-			  	res.writeHead(301, {Location:'/chat'});
+                userConnect(data.username);
+			 	res.writeHead(301, {Location:'/chat'});
 			  	res.end();
-				//res.render('chat', { username : data.username, messages : defaultmessage
-				//        });
     		}
     		else
         		res.render('login', {
