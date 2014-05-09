@@ -10,7 +10,8 @@ var express = require('express'),
     dbsimplechat = require('mongodb').MongoClient,
     format = require('util').format,
     crypto = require('crypto'),
-    md5 = require('MD5');
+    md5 = require('MD5'),
+    socketio = require('socket.io');
 
     global.app = app;
     global.crypto = crypto;

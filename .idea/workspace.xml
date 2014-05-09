@@ -26,8 +26,8 @@
       <file leaf-file-name="get.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/utils/get.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.357142" vertical-offset="582" max-vertical-offset="1598">
-              <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+            <state vertical-scroll-proportion="-8.357142" vertical-offset="599" max-vertical-offset="1955">
+              <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -36,8 +36,8 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.535714" vertical-offset="650" max-vertical-offset="1139">
-              <caret line="49" column="14" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="14" />
+            <state vertical-scroll-proportion="-6.535714" vertical-offset="667" max-vertical-offset="1139">
+              <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -56,25 +56,19 @@
       <file leaf-file-name="repository.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/repository.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
-              <caret line="47" column="10" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2261">
+              <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
               <folding>
-                <element signature="e#314#517#0" expanded="false" />
-                <element signature="e#1448#1978#0" expanded="false" />
-                <marker date="1399472288347" expanded="true" signature="351:443" placeholder="{...}" />
-                <marker date="1399472288347" expanded="true" signature="405:436" placeholder="{...}" />
-                <marker date="1399472288347" expanded="true" signature="398:413" placeholder="{...}" />
+                <element signature="e#320#526#0" expanded="false" />
+                <marker date="1399616789465" expanded="true" signature="357:1252" placeholder="{...}" />
+                <marker date="1399616789465" expanded="true" signature="1664:1987" placeholder="{...}" />
+                <marker date="1399616789465" expanded="true" signature="2043:2104" placeholder="{...}" />
+                <marker date="1399616789465" expanded="true" signature="2243:2254" placeholder="{...}" />
+                <marker date="1399616789465" expanded="true" signature="2394:2500" placeholder="{...}" />
+                <marker date="1399616789465" expanded="true" signature="2992:3168" placeholder="{...}" />
+                <marker date="1399616789465" expanded="true" signature="3039:3164" placeholder="{...}" />
+                <marker date="1399616789465" expanded="true" signature="3050:3069" placeholder="{...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/utils/test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -82,9 +76,12 @@
       <file leaf-file-name="post.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/utils/post.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="918">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1292">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding>
+                <marker date="1399616642392" expanded="true" signature="246:310" placeholder="{...}" />
+                <marker date="1399616642392" expanded="true" signature="738:856" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,8 +89,8 @@
       <file leaf-file-name="chat.ejs" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/chat.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.1567696" vertical-offset="202" max-vertical-offset="1071">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+            <state vertical-scroll-proportion="-0.15207373" vertical-offset="219" max-vertical-offset="1241">
+              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#a#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -287,6 +284,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -333,6 +331,9 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0b78c822-76d5-4dee-a255-c7e609056dd4" name="Default" comment="" />
@@ -342,8 +343,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="700" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1296" height="700" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -412,9 +413,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/utils/post.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="442">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1292">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding>
+            <marker date="1399616642392" expanded="true" signature="246:310" placeholder="{...}" />
+            <marker date="1399616642392" expanded="true" signature="738:856" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -428,38 +432,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.535714" vertical-offset="650" max-vertical-offset="1139">
-          <caret line="49" column="14" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="14" />
+        <state vertical-scroll-proportion="-6.535714" vertical-offset="667" max-vertical-offset="1139">
+          <caret line="50" column="14" selection-start-line="50" selection-start-column="14" selection-end-line="50" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/repository.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
-          <caret line="47" column="10" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="2261">
+          <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
           <folding>
-            <element signature="e#314#517#0" expanded="false" />
-            <element signature="e#1448#1978#0" expanded="false" />
-            <marker date="1399472288347" expanded="true" signature="351:443" placeholder="{...}" />
-            <marker date="1399472288347" expanded="true" signature="405:436" placeholder="{...}" />
-            <marker date="1399472288347" expanded="true" signature="398:413" placeholder="{...}" />
+            <element signature="e#320#526#0" expanded="false" />
+            <marker date="1399616789465" expanded="true" signature="357:1252" placeholder="{...}" />
+            <marker date="1399616789465" expanded="true" signature="1664:1987" placeholder="{...}" />
+            <marker date="1399616789465" expanded="true" signature="2043:2104" placeholder="{...}" />
+            <marker date="1399616789465" expanded="true" signature="2243:2254" placeholder="{...}" />
+            <marker date="1399616789465" expanded="true" signature="2394:2500" placeholder="{...}" />
+            <marker date="1399616789465" expanded="true" signature="2992:3168" placeholder="{...}" />
+            <marker date="1399616789465" expanded="true" signature="3039:3164" placeholder="{...}" />
+            <marker date="1399616789465" expanded="true" signature="3050:3069" placeholder="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/utils/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="449">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/utils/get.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.357142" vertical-offset="582" max-vertical-offset="1598">
-          <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+        <state vertical-scroll-proportion="-8.357142" vertical-offset="599" max-vertical-offset="1955">
+          <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -484,8 +484,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/chat.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.1567696" vertical-offset="202" max-vertical-offset="1071">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state vertical-scroll-proportion="-0.15207373" vertical-offset="219" max-vertical-offset="1241">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
           <folding>
             <element signature="n#style#0;n#div#0;n#a#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>

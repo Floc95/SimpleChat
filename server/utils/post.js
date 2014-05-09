@@ -59,3 +59,14 @@ app.post('/signin', function(req, res){
 	//Faire un insert
 		});
 	});
+
+app.post('/sendmessage', function(req, res){
+    console.log('Entrée dans la fonction sendmessage'.green);
+        var message = {};
+        message.sender = req.body.messagepost.sender;
+        message.receiver = req.body.messagepost.receiver;
+        message.text = req.body.messagepost.text;
+        userRepository.createMessage(message, function(err, data){
+            console.log("message : ".red+message.text);
+        });
+    });

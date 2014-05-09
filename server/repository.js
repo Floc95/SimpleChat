@@ -48,19 +48,21 @@ function Repository()
 	self.createUser = function(user, callback) {
     //Comment résupérer l'id ?
     console.log('Entrée dans la fonction createUser'.blue);
-    self.messagecollection.insert({
+    self.usercollection.insert({
       id : 3, 
       username : user.login, 
       password : md5(user.password),
       creationDate : Date.now()
-    });
-    //Problème de callback
-    console.log('Création terminée'.green);
-    callback(0, 0);
+    },
+    function(err, cursor) {
+      console.log('Entrée dans la fonction callback de create user'.red);
+      callback(0, 0);
+    }
+    );
 	 };
 
 	//TODO : Retourner tous les messages entre 2 utilisateurs
-	self.getMessages = function(senderId, receiverIds, messagesCount) {
+	self.getMessages = function(senderId, receiverId, messagesCount) {
 		self.messagecollection.find(
             {
                 'sender' : senderId
@@ -106,15 +108,20 @@ function Repository()
    };
 
 	//TODO : jouter un nouveau message en base
-	self.createMessage = function(message) {
+	self.createMessage = function(message, callback) {
+    console.log('Entrée dans la fonction createMessage'.red);
+    var idmessage = parseInt(self.messagecollection.count()+1);
 		self.messagecollection.insert({
-      id : 3, 
+      id : idmessage, 
       sender : message.sender, 
       receiver : message.receiver,
       text : message.text,
       sendDate : Date.now()
+    },
+     function(err, cursor) {
+      console.log('Entrée dans la fonction callback de create message'.red);
+      callback(0, 0);
     });
-    return;
   };
 
 }

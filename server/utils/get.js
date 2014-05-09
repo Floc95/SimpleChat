@@ -76,7 +76,48 @@ app.get('/chat', function(req, res){
     for( var user in logusers )
       if( logusers.hasOwnProperty( user ) )
         if( logusers[user] == req.sessionID )
-          res.render('chat', { username : user, messages : listmessages});
+          res.render('chat', {
+            friendid :'', 
+            userid :'',
+            username : user, 
+            messages : listmessages
+          });
+    });
 
-  });
+app.get('/chat/:user', function(req, res){
 
+   var message2 = {};
+      message2.sender = "Marine";
+      message2.receiver = "Floc";
+      message2.text = "Salut :D";
+      message2.date = "12:13";
+    var message3 = {};
+      message3.sender = "Floc";
+      message3.receiver = "Marine";
+      message3.text = "les cours le samedi c'est trop pourri !!!!!!!!!!!!!!!! J'ai trop envie de sécher :p";
+      message3.date = "12:14";
+
+    var listmessages = [];
+    listmessages.push(message2);
+    listmessages.push(message3);
+    for( var user in logusers )
+        if( logusers.hasOwnProperty( user ) )
+          if( logusers[user] == req.sessionID )
+          {
+            //user = utilisateur courant 
+            var currentfriend = req.param("user");
+            userRepository.getUserByName(user, function(err, sender){
+              userRepository.getUserByName(currentfriend, function(err, receiver){
+                  res.render('chat', { 
+                    friendid: receiver.id,
+                    userid :  sender.id,
+                    username : user, 
+                    messages : listmessages
+                });
+              });
+            });
+            //Récupérer les messages entre 2 utilisateurs
+            //Mettre le res.render dans le callback
+            
+          }
+    });

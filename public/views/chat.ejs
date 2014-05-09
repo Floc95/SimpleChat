@@ -13,12 +13,13 @@
 	<div class="row well">
 		<div class="col-md-2">
     	    <ul class="nav nav-pills nav-stacked well">
-              <li  class="active"><a>Amis en ligne</a></li>
-              <!--Pour chaque amis connectés, ajouter un élément-->
-              <li><a ><i class="fa fa-user"></i> User1</a></li>
-              <li><a ><i class="fa fa-user"></i> User2</a></li>
-              <li><a ><i class="fa fa-user"></i> User3</a></li>
-              <li><a ><i class="fa fa-user"></i> User4</a></li>
+              <li  class="active"><a>Utilisateurs en ligne</a></li>
+              <!--Penser a retirer l'utilisateur actif-->
+              <% for( var user in logusers ){ %>
+                <li><a href="chat/<%= user%>"><i class="fa fa-user" ></i><%=  user %></a></li>
+              <%
+              }
+              %>
             </ul>
         </div>
         <div class="col-md-10">
@@ -48,10 +49,12 @@
       <!--Fin content a copier-->
         <br>
       </div>
-      <form method="post" action"sendmessage">
-          <input class="col-md-10" type="text">
+      <!--Si un utilisateur--> 
+      <form method="post" action="/sendmessage">
+          <input class="col-md-10" type="text" name="messagepost[text]">
+          <input type="hidden" name="messagepost[receiver]" value="<%= friendid %>">
+          <input type="hidden" name="messagepost[sender]" value="<%= userid %>">
           <button class="btn" type="submit">Post</button>
-
       </form>
 
     </div>
