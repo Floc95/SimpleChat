@@ -62,50 +62,38 @@ function Repository()
 	 };
 
 	//TODO : Retourner tous les messages entre 2 utilisateurs
-	self.getMessages = function(senderId, receiverId, messagesCount) {
+	self.getMessages = function(senderId, receiverId, messagesCount, callback) {
+    console.log('get messages'.green);
 		self.messagecollection.find(
             {
-                'sender' : senderId
+                $and: [
+                    { $or: [ { 'sender': senderId }, { 'sender': receiverId } ] },
+                    { $or: [ { 'receiver': senderId }, { 'receiver': receiverId } ] }
+                ]
             },
             {
                 _id : 0
             },
             function(err, cursor) {
+                var counter = 0;
+                var msgList = [];
                 var next = function () {
                     cursor.nextObject(function (err, item) {
                         if (err || !item) {
+                            callback(0, msgList);
                             return;
                         }
-                        callback(0, item);
+                        counter++;
+                        msgList.push(item);
+                        if (counter < messagesCount){
+                          next();
+                        }
                     })
                 }
                 next();
             }
         );
 	 };
-
-  //TODO : Retourner tous les messages de l'utilisateur connectés : dans la limite de 10
-  self.getMessages = function(senderId, callback) {
-    self.messagecollection.find(
-            {
-                'sender' : senderId
-            },
-            {
-                _id : 0
-            },
-            function(err, cursor) {
-                var next = function () {
-                    cursor.nextObject(function (err, item) {
-                        if (err || !item) {
-                            return;
-                        }
-                        callback(0, item);
-                    })
-                }
-                next();
-            }
-        );
-   };
 
 	//TODO : jouter un nouveau message en base
 	self.createMessage = function(message, callback) {

@@ -1,8 +1,8 @@
-/*
+
 app.get('/', function(req, res){
 	res.redirect('/login');
   });
-*/
+
 app.get('/message/:sender', function(req, res){
   var sender = parseInt(req.param("sender"), 10);
     userRepository.getMessages(sender, 0, function (err, data) {
@@ -80,12 +80,43 @@ app.get('/chat', function(req, res){
             friendid :'', 
             userid :'',
             username : user, 
+            users : [],
             messages : listmessages
           });
     });
 
 app.get('/chat/:user', function(req, res){
 
+  for( var user in logusers )
+    if( logusers.hasOwnProperty( user ) )
+      if( logusers[user] == req.sessionID )
+        var senderName = user;
+        userRepository.getUserByName(user, function(err, objectuser){
+            var idSender = objectuser.id;
+
+            userRepository.getUserByName(req.param("user"), function(err, objectuser){
+                var idReceiver = objectuser.id;
+
+                userRepository.getMessages(idSender, idReceiver, 50, function(err, messages)
+                  {
+                    console.log(messages);
+
+                    var userHashMap = {};
+                    userHashMap[idSender] = senderName;
+                    userHashMap[idReceiver] = req.param("user");
+                    res.render('chat', { 
+                        users : userHashMap,
+                        username : user, 
+                        friendid : idReceiver, 
+                        userid : idSender,
+                        messages : messages
+                    });
+                  });
+
+            });
+
+        });
+/*
    var message2 = {};
       message2.sender = "Marine";
       message2.receiver = "Floc";
@@ -119,5 +150,5 @@ app.get('/chat/:user', function(req, res){
             //Récupérer les messages entre 2 utilisateurs
             //Mettre le res.render dans le callback
             
-          }
+          }*/
     });

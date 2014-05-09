@@ -16,7 +16,7 @@
               <li  class="active"><a>Utilisateurs en ligne</a></li>
               <!--Penser a retirer l'utilisateur actif-->
               <% for( var user in logusers ){ %>
-                <li><a href="chat/<%= user%>"><i class="fa fa-user" ></i><%=  user %></a></li>
+                <li><a href="/chat/<%= user%>"><i class="fa fa-user" ></i> <%=  user %></a></li>
               <%
               }
               %>
@@ -41,8 +41,8 @@
         <% for(var i=0; i<messages.length; i++) { %>
           <a type="button" data-toggle="collapse" data-target="#a1">
                 <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
-                  <div class="btn-group col-md-10"><b><%= messages[i].sender %></b> <%= messages[i].text%></div>
-                  <div class="pull-right"><i class="glyphicon glyphicon-time"></i> <%= messages[i].date %></div>
+                  <div class="btn-group col-md-9"><b><%= users[messages[i].sender] %> : </b> <%= messages[i].text%></div>
+                  <div class="pull-right"><i class="glyphicon glyphicon-time"></i> <%= messages[i].sendDate %></div>
                 </div>
           </a>
         <% } %>
