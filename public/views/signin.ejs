@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Simple Chat - inscription</title>
+  <title>Simple Chat - inscription</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/login.css" rel="stylesheet">
-  </head>
+  <!-- Custom styles for this template -->
+  <link href="../css/login.css" rel="stylesheet">
+</head>
 
-  <body>
+<body>
 
-    <script type="text/javascript">
-      function formvalidation(){
-        if(document.formsign.password.value == document.formsign.confirmpassword.value){
-          errormessage.innerHTML = "";
-          document.formsign.submit();
-        }
-        else{
-          errormessage.innerHTML = "Les mots de passe sont différents";
-          return false;
-        }
+  <script type="text/javascript">
+    function formvalidation(){
+      if(document.formsign.password.value == document.formsign.confirmpassword.value){
+        errormessage.innerHTML = "";
+        document.formsign.submit();
       }
-    </script>
+      else{
+        errormessage.innerHTML = "Les mots de passe sont différents";
+        return false;
+      }
+    }
+  </script>
 
-    <div class="container">
+  <div class="container">
 
-      <form class="form-login" role="form" method="post" action="/signin" name="formsign" onsubmit="return formvalidation();">
-        <h2 class="form-login-heading">Inscription</h2>
+    <form class="form-login" role="form" method="post" action="/signin" name="formsign" onsubmit="return formvalidation();">
+      <h2 class="form-login-heading">Inscription</h2>
 
-        <input type="text" class="form-control" placeholder="Login" required autofocus name="user[login]">
-        <br>
-        <input type="password" class="form-control" placeholder="Password" required name="user[password]" id="password">
-        <input type="password" class="form-control" placeholder="Confirm password" required name="user[confirmpassword]" id="confirmpassword">
+      <input type="text" class="form-control" placeholder="Login" required autofocus name="user[login]">
+      <br>
+      <input type="password" class="form-control" placeholder="Password" required name="user[password]" id="password">
+      <input type="password" class="form-control" placeholder="Confirm password" required name="user[confirmpassword]" id="confirmpassword">
 
-        <p style="color:red;" id="errormessage"><%= errormessage %></p>
-        
-        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="formvalidation()">Enregistrer</button>
-        <a href="login" class="btn btn-info btn-block">Login</a>
+      <p style="color:red;" id="errormessage"><%= errormessage %></p>
+      
+      <button class="btn btn-lg btn-primary btn-block" type="button" onclick="formvalidation()">Enregistrer</button>
+      <a href="login" class="btn btn-info btn-block">Login</a>
 
-      </form>
+    </form>
 
-    </div>
-  </body>
+  </div>
+</body>
 </html>
